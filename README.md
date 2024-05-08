@@ -18,11 +18,7 @@ This is a simple API for managing customer health information for the Olisaude p
 - `GET api/top-health-risk-customers`: Get the top 10 customers with the highest health risk score
 
 
-- `GET /api/customers`: Get all customers
-- `POST api/customers`: Create a new customer
-- `GET api/customers/{id}`: Get a specific customer by ID
-- `PUT api/customers/{id}`: Update a specific customer by ID
-- `DELETE api/customers/{id}`: Delete a specific customer by ID
+- `POST api/customers`: Create a new problem
 
 ## Customer Object
 
