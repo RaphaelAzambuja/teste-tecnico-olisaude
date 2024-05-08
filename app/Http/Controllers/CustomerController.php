@@ -64,4 +64,9 @@ class CustomerController extends Controller
         return $this->repository->delete($id);
     }
 
+    public function calculateHealthRisk()
+    {
+        return $this->repository->calculateTop10HealthRiskCustomers();
+    }
+
 }
