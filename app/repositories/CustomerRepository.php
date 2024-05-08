@@ -82,4 +82,29 @@ class CustomerRepository implements CustomerRepositoryInterface
             return response()->json(['success' => false, 'message' => 'Error while deleting customer', 'error' => $e->getMessage()], 500);
         }
     }
+
+    public function calculateTop10HealthRiskCustomers(): JsonResponse
+    {
+        try {
+            $customers = Customer::with('problems')->get();
+
+            $customersWithRisk = $customers->map(function ($customer) {
+                $totalSeverity = $customer->problems->sum('severity');
+                $healthRisk = (1 / (1 + exp(-(-2.8 + $totalSeverity)))) * 100;
+                return ['customer' => $customer, 'health_risk' => $healthRisk];
+            });
+
+            $sortedCustomers = $customersWithRisk->sortByDesc('health_risk')->take(10);
+
+            $formattedCustomers = $sortedCustomers->map(function ($item) {
+                return ['customer_id' => $item['customer']->id, 'name' => $item['customer']->name, 'health_risk' => $item['health_risk']];
+            });
+
+            return response()->json(['success' => true, 'message' => 'Top 10 customers with highest health risk calculated successfully', 'data' => $formattedCustomers]);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'Error calculating top 10 health risk customers', 'error' => $e->getMessage()], 500);
+        }
+    }
+
+
 }
