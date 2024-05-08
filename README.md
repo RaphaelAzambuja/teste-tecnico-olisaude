@@ -10,23 +10,27 @@ This is a simple API for managing customer health information for the Olisaude p
 
 ## Endpoints
 
-- `GET /api/customers`: Get all customers
+- `GET /api/customers?page={page number}`: Get all customers
 - `POST api/customers`: Create a new customer
 - `GET api/customers/{id}`: Get a specific customer by ID
 - `PUT api/customers/{id}`: Update a specific customer by ID
 - `DELETE api/customers/{id}`: Delete a specific customer by ID
 - `GET api/top-health-risk-customers`: Get the top 10 customers with the highest health risk score
 
+
+- `GET /api/customers`: Get all customers
+- `POST api/customers`: Create a new customer
+- `GET api/customers/{id}`: Get a specific customer by ID
+- `PUT api/customers/{id}`: Update a specific customer by ID
+- `DELETE api/customers/{id}`: Delete a specific customer by ID
+
 ## Customer Object
 
 ``` json
 {
-  "id": 1,
-  "name": "John Doe",
-  "date_of_birth": "1990-05-15",
-  "gender": "Male",
-  "created_at": "2024-05-07T12:00:00Z",
-  "updated_at": "2024-05-07T12:00:00Z"
+  "name": "Bananilson Farofa",
+  "date_of_birth": "2002-02-08",
+  "gender": "Male"
 }
 ```
 
@@ -34,12 +38,9 @@ This is a simple API for managing customer health information for the Olisaude p
 
 ``` json
 {
-  "id": 1,
   "customer_id": 1,
   "name": "Diabetes",
-  "severity": 2,
-  "created_at": "2024-05-07T12:00:00Z",
-  "updated_at": "2024-05-07T12:00:00Z"
+  "severity": 2
 }
 ```
 
